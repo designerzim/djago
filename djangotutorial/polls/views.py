@@ -6,6 +6,7 @@ from django.urls import reverse
 from .models import Question, Choice
 
 polls_index = "polls/index.html"
+polls_details = "polls/detail.html"
 polls_results = "polls/results.html"
 
 
@@ -19,7 +20,7 @@ def index(request):
 
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    return render(request, polls_index, {"question": question})
+    return render(request, polls_details, {"question": question})
 
 
 def results(request, question_id):
@@ -30,9 +31,6 @@ def results(request, question_id):
 def vote(request, question_id):
     """
     references polls:vote 'action' in details.html
-    :param request:
-    :param question_id:
-    :return:
     """
     question = get_object_or_404(Question, pk=question_id)
     try:
